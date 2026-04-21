@@ -1,0 +1,23 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
+---
+<Layout title={`${frontmatter.title} — Your Name`} description={frontmatter.description}>
+  <a href="/articles" class="back-link">← all articles</a>
+
+  <div class="article-header">
+    <h1>{frontmatter.title}</h1>
+    <div class="article-meta">{formatDate(frontmatter.date)}</div>
+  </div>
+
+  <div class="article-body">
+    <slot />
+  </div>
+</Layout>

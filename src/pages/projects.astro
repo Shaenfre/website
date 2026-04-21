@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// 🔧 Replace these with your own projects
+const projects = [
+  {
+    name: "Project Alpha",
+    description: "A short description of what this project does and why you built it. Keep it to 1-2 sentences.",
+    tags: ["rust", "cli"],
+    github: "https://github.com/yourusername/project-alpha",
+    demo: "",
+  },
+  {
+    name: "Project Beta",
+    description: "Another project description. What problem did it solve? What did you learn?",
+    tags: ["python", "web"],
+    github: "https://github.com/yourusername/project-beta",
+    demo: "https://project-beta.example.com",
+  },
+  {
+    name: "Project Gamma",
+    description: "A third project. Feel free to include anything — open source tools, games, experiments.",
+    tags: ["typescript", "react"],
+    github: "https://github.com/yourusername/project-gamma",
+    demo: "",
+  },
+];
+---
+<Layout title="Projects — Your Name">
+  <h1>Projects</h1>
+  <p style="color: var(--muted); margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.85rem;">
+    A selection of things I've built.
+  </p>
+
+  <div class="project-grid">
+    {projects.map(p => (
+      <div class="project">
+        <div class="project-header">
+          <a class="project-name" href={p.github || p.demo || '#'}>{p.name}</a>
+          {p.tags.map(tag => <span class="project-tag">{tag}</span>)}
+        </div>
+        <p class="project-desc">{p.description}</p>
+        <div class="project-links">
+          {p.github && <a href={p.github} target="_blank" rel="noopener">github ↗</a>}
+          {p.demo  && <a href={p.demo}   target="_blank" rel="noopener">live demo ↗</a>}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>
